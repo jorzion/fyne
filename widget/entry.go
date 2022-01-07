@@ -908,7 +908,10 @@ func (e *Entry) rowColFromTextPos(pos int) (row int, col int) {
 			}
 			col = pos - b.begin
 			if canWrap && b.begin == pos && col == 0 && pos != 0 && row < (totalRows-1) {
-				row++
+				if pos == b.begin {
+					col = pos
+				}
+				row--
 			}
 		} else {
 			break
